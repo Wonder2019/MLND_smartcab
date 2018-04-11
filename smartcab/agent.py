@@ -44,10 +44,10 @@ class LearningAgent(Agent):
             self.alpha = 0 
         else:
             # self.t += 1
-            # self.epsilon = self.epsilon-0.05
+            # self.epsilon = self.epsilon-0.03
             self.t += 1
             self.epsilon = 1/((self.alpha*self.t)**2)
-        # self.epsilon = math.fabs(math.cos(self.alpha*self.t))
+            # self.epsilon = math.fabs(math.cos(self.alpha*self.t))
         return None
 
     def build_state(self):
@@ -117,7 +117,7 @@ class LearningAgent(Agent):
         if not self.learning:
             action = random.choice(self.valid_actions)
         else:
-            if self.epsilon > 0.01 and self.epsilon > random.random():
+            if  self.epsilon > random.random():
                 action = random.choice(self.valid_actions)
             else:
                 valid_actions = []
@@ -197,7 +197,7 @@ def run():
     # Flags:
     #   tolerance  - epsilon tolerance before beginning testing, default is 0.05 
     #   n_test     - discrete number of testing trials to perform, default is 0
-    sim.run(n_test=10,tolerance=0.00002)
+    sim.run(n_test=10,tolerance=0.0001)
 
 
 if __name__ == '__main__':
